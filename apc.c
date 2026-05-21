@@ -22,16 +22,18 @@
 int main() {
 
     // Variaveis
-    
+    struct Login {
+        char nome[50];
+        char senha;
+        int idade;
+    }
 
-    // Cadastro
+    // Print do menu
+    printf("Ola, seja bem vindo a loja 'A link to the future' \n");
+    printf("Entre com o seu login: \n");
 
 
-    // Crud
-
-
-    // Menu
-
+    // Opção
 
     return 0;
 }
