@@ -220,7 +220,7 @@ int main() {
                 printf("Voce escolheu: Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2)\n"); 
                 break;
 
-            case 5: // remover jogo
+             case 5: // remover jogo
                 { 
                     int id_delete;
                     int removido = 0;
@@ -249,11 +249,17 @@ int main() {
                 } 
                 break; 
 
+            case -1: //sair do sistema
+                printf("\nVoce esta saindo do sistema, muito obrigado por usar 'A link to the future'!\n");
+                break;
+
             default:
                 printf("Escolha inexistente\n");
                 break;
         }
     }
+
+    printf("\nPrograma encerrado com sucesso\n");
 
     return 0;
 }
