@@ -25,7 +25,7 @@ int main() {
         p1.carrinho[i][1] = 0;
     }
 
-    struct Jogo biblioteca[12] = {
+    struct Jogo biblioteca[50] = {
         {1, "Fallout: New Vegas (XBOX 360)"},
         {2, "The Legend of Zelda: Tears of The Kingdom (NINTENDO SWITCH 2)"},
         {3, "Half Life (PC)"},
@@ -97,7 +97,10 @@ int main() {
         printf("2. Cadastrar Jogo no carrinho\n");
         printf("3. Buscar Jogo por ID\n");
         printf("4. Ver carrinho\n");
-        printf("5. Remover Jogo do carrinho\n");
+        printf("5. Remover Jogo do carrinho\n"); 
+        printf("6. [ADMIN] Adicionar jogo na biblioteca da loja\n"); 
+        printf("7. [ADMIN] Remover jogo na biblioteca da loja\n"); 
+        printf("8. [ADMIN] Atualizar jogo na biblioteca da loja\n"); 
         printf("-1. Sair do Sistema\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &escolha);
