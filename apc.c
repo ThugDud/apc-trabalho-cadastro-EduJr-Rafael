@@ -101,10 +101,10 @@ int main() {
     while(escolha != -1){
         printf("Bem vindo ao alugel de jogos \"A link to the future\"\n");
         printf("1. Listar Jogos\n");
-        printf("2. Cadastrar Jogo\n");
+        printf("2. Cadastrar Jogo no carrinho\n");
         printf("3. Buscar Jogo por ID\n");
-        printf("4. Atualizar Jogo\n");
-        printf("5. Remover Jogo\n");
+        printf("4. Ver carrinho\n");
+        printf("5. Remover Jogo do carrinho\n");
         printf("-1. Sair do Sistema\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &escolha);
@@ -216,11 +216,11 @@ int main() {
                 } 
                 break;
 
-            case 4: //atualizar jogo
+            case 4: //Ver carrinho
                 printf("Voce escolheu: Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2)\n"); 
                 break;
 
-             case 5: // remover jogo
+             case 5: // remover jogo do carrinho
                 { 
                     int id_delete;
                     int removido = 0;
@@ -233,21 +233,39 @@ int main() {
                         if (biblioteca[i].id == id_delete) {
                             printf("ID: %d\n", biblioteca[i].id);
                             printf("Nome: %s\n", biblioteca[i].nome);
-                            p1.carrinho[i][1] = 0;
-                            printf("Carrinho: %d\n", p1.carrinho[i][1]);
+                            
+                            int quantidade_remover;
+                            printf("Quantidade atual no carrinho: %d\n", p1.carrinho[i][1]);
+                            printf("Quantas unidades deseja remover: ");
+                            scanf("%d", &quantidade_remover);
+                            while(getchar() != '\n');
+
+                            if (quantidade_remover < 0) {
+                                printf("Nao eh possivel remover uma quantidade negativa!\n");
+                                break; // Sai do loop sem alterar nada
+                            }
+
+                            p1.carrinho[i][1] = p1.carrinho[i][1] - quantidade_remover;
+
+                            if (p1.carrinho[i][1] < 0) {
+                                p1.carrinho[i][1] = 0;
+                                printf("Nota: Voce removeu mais unidades do que tinha. O carrinho foi zerado.\n");
+                            }
+
+                            printf("Carrinho atualizado: %d\n", p1.carrinho[i][1]);
                             removido = 1; 
                             break; 
                         }
                     }
 
                     if (removido == 1) {
-                        printf("\nJogo removido da sua biblioteca.\n");
+                        printf("\nJogo removido do carrinho.\n");
                     }
                     else {
-                        printf("\nErro: Jogo com o ID %d nao foi encontrado na sua biblioteca. :(\n", id_delete);
+                        printf("\nErro: Jogo com o ID %d nao foi encontrado no carrinho. :(\n", id_delete);
                     }
                 } 
-                break; 
+                break;
 
             case -1: //sair do sistema
                 printf("\nVoce esta saindo do sistema, muito obrigado por usar 'A link to the future'!\n");
