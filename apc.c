@@ -43,7 +43,7 @@ int main() {
 
     char nome_temp[100] = {};
 
-    scanf("%[^\n]s", nome_temp);
+    scanf("%[^\n]", nome_temp);
     while(getchar() != '\n');
     strcpy(p1.nome, nome_temp);
 
@@ -51,7 +51,7 @@ int main() {
 
     char senha_temp[50] = {};
 
-    scanf("%[^\n]s", senha_temp);
+    scanf("%s", senha_temp);
     while(getchar() != '\n');
     strcpy(p1.senha, senha_temp);
 
@@ -78,7 +78,7 @@ int main() {
     
     int escolha = 0;
 
-    printf("Bem vindo ao alugél de jogos \"A link to the future\"");
+    printf("Bem vindo ao alugél de jogos \"A link to the future\"\n");
     printf("1. Listar Jogos\n");
     printf("2. Cadastrar Jogo\n");
     printf("3. Buscar Jogo por ID\n");
