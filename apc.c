@@ -122,36 +122,66 @@ int main() {
                 break;
                 
             case 2: //cadastrar jogo
-                
-            printf("Escolha um jogo para alugar: \n");
+                 
+                printf("\nEscolha um jogo para alugar: ");
                
                 int escolher_jogo;
+                int encontrado = 0;
+
                 scanf("%d", &escolher_jogo);
-                    
-                switch (escolher_jogo) {
+                while(getchar() != '\n');
+                
+                for (int i = 0; i < 12; i++) {
+                    if (biblioteca[i].id == escolher_jogo) {
+                        printf("Voce escolheu %s!\n", biblioteca[i].nome);
                         
-                    case 1:
-                        printf("Você escolheu: Fallout: New Vegas (XBOX 360)\n");
-                        if(p1.carrinho[0][1] > 0){
-                            int sobrescrever;
-                            printf("Você ja tem esse jogo no carrinho, sobrescrever? (0 ou 1): ");
-                            scanf("%d", &sobrescrever);
-                            
-                            if (sobrescrever == 1){
-                                printf("Escolha de sobrescrever!\n");
-                            } else if(sobrescrever == 0){
+                        if(p1.carrinho[i][1] > 0){
+                            int substituir;
+                            printf("Voce ja possui esse jogo no carrinho, quer sobrescrever? (1 ou 0): ");
+                            scanf("%d", &substituir);
+                            while(getchar() != '\n');
+
+                            if(substituir == 1){
+                                printf("Voce escolheu substituir!\n\n");
+                            } else if(substituir == 0) {
                                 break;
                             } else {
-                                printf("Input invalido");
+                                printf("Comando invalido\n");
                                 break;
                             }
                         }
-                        int unidades;
-                        printf("Quantas unidades você quer: ");
-                        scanf("%d", &unidades);
-                        p1.carrinho[0][1] = unidades;
+                        
+                        int holder_quantidade;
+                        printf("\nescolha a quantidade de unidades para %s: ", biblioteca[i].nome);
+                        scanf("%d", &holder_quantidade);
+                        while(getchar() != '\n');
 
+                        if(holder_quantidade < 0){
+                            printf("ta tentando comprar unidades negativas?\n");
+                            break;
+                        }
+
+                        p1.carrinho[i][1] = holder_quantidade;
+                        encontrado = 1;
+
+                        printf("\nID: %d\n", biblioteca[i].id);
+                        printf("Nome: %s\n", biblioteca[i].nome);
+                        printf("Carrinho: %d\n", p1.carrinho[i][1]);
+                        
+
+                        break; 
+                    } else {
+                        continue;
+                    }
                 }
+
+                if (encontrado == 1) {
+                    printf("\nBusca finalizada com sucesso.\n\n");
+                }
+                else {
+                    printf("\nErro: Jogo com o ID %d nao foi encontrado. :(\n", escolher_jogo);
+                }
+
                 break;
 
             case 3: // buscar jogo
