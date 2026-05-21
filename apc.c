@@ -28,10 +28,12 @@ int main() {
         int idade;
     }
 
-    // Print do menu
+    // Print do login
     printf("Ola, seja bem vindo a loja 'A link to the future' \n");
     printf("Entre com o seu login: \n");
 
+
+    // Print aluguel
 
     // Opção
 
