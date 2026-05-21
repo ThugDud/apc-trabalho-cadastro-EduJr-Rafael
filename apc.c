@@ -189,9 +189,36 @@ int main() {
             case 4: //atualizar jogo
                 printf("Voce escolheu: Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2)\n"); 
                 break;
-            case 5: //remover jogo
-                printf("Voce escolheu: Mother 2: Earthbound (SNES)\n"); 
-                break;
+
+            case 5: // remover jogo
+                { 
+                    int id_delete;
+                    int removido = 0;
+                    
+                    printf("Digite o ID do jogo que deseja remover: ");
+                    scanf("%d", &id_delete);
+                    while(getchar() != '\n'); 
+
+                    for (int i = 0; i < 12; i++) {
+                        if (biblioteca[i].id == id_delete) {
+                            printf("ID: %d\n", biblioteca[i].id);
+                            printf("Nome: %s\n", biblioteca[i].nome);
+                            p1.carrinho[i][1] = 0;
+                            printf("Carrinho: %d\n", p1.carrinho[i][1]);
+                            removido = 1; 
+                            break; 
+                        }
+                    }
+
+                    if (removido == 1) {
+                        printf("\nJogo removido da sua biblioteca.\n");
+                    }
+                    else {
+                        printf("\nErro: Jogo com o ID %d nao foi encontrado na sua biblioteca. :(\n", id_delete);
+                    }
+                } 
+                break; 
+
             default:
                 printf("Escolha inexistente\n");
                 break;
