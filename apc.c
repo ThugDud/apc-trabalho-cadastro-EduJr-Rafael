@@ -153,9 +153,38 @@ int main() {
 
                 }
                 break;
-            case 3: //buscar jogo
 
+            case 3: // buscar jogo
+                { 
+                    int id_busca;
+                    int encontrado = 0;
+                    
+                    printf("Digite o ID do jogo que deseja buscar: ");
+                    scanf("%d", &id_busca);
+                    while(getchar() != '\n'); 
+
+                    for (int i = 0; i < 12; i++) {
+                        if (biblioteca[i].id == id_busca) {
+                            printf("\nJogo Encontrado.\n");
+                            printf("ID: %d\n", biblioteca[i].id);
+                            printf("Nome: %s\n", biblioteca[i].nome);
+                            encontrado = 1; 
+                            break; 
+                        }
+                        else {
+                            continue;
+                        }
+                    }
+
+                    if (encontrado == 1) {
+                        printf("\nBusca finalizada com sucesso.\n");
+                    }
+                    else {
+                        printf("\nErro: Jogo com o ID %d nao foi encontrado. :(\n", id_busca);
+                    }
+                } 
                 break;
+
             case 4: //atualizar jogo
                 printf("Voce escolheu: Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2)\n"); 
                 break;
