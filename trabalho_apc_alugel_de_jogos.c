@@ -15,30 +15,32 @@ int main() {
         char nome[100];
         char senha[50];
         int idade;
-        int carrinho[12][2];
+        int carrinho[100][2];
     };
 
     struct Login p1 = {};
     
-    for(int i = 0; i < 12; i++) {
+    for(int i = 0; i < 100; i++) {
         p1.carrinho[i][0] = i + 1;
         p1.carrinho[i][1] = 0;
     }
 
     struct Jogo biblioteca[50] = {
-        {1, "Fallout: New Vegas (XBOX 360)"},
-        {2, "The Legend of Zelda: Tears of The Kingdom (NINTENDO SWITCH 2)"},
-        {3, "Half Life (PC)"},
-        {4, "Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2)"},
-        {5, "Mother 2: Earthbound (SNES)"},
+        {1, "Fallout: New Vegas "},
+        {2, "The Legend of Zelda: Tears of The Kingdom "},
+        {3, "Half Life "},
+        {4, "Paper Mario The Thousand-Year Door "},
+        {5, "Mother 2: Earthbound "},
         {6, "Lego Batman: The legacy of the dark knight"},
-        {7, "Chrono Trigger (SNES)"},
-        {8, "Mario kart World (NINTENDO SWITCH 2)"},
-        {9, "Dark Souls: Remastered (XBOX SERIES S/X)"},
-        {10, "Super Mario Galaxy 1+2 (NINTENDO SWITCH 2)"},
-        {11, "Team Fortress 2 (PC)"},
-        {12, "The Legend of Zelda: Ocarina of Time (NINTENDO SWITCH 2)"}
+        {7, "Chrono Trigger "},
+        {8, "Mario kart World "},
+        {9, "Dark Souls: Remastered "},
+        {10, "Super Mario Galaxy 1+2 "},
+        {11, "Team Fortress 2 "},
+        {12, "The Legend of Zelda: Ocarina of Time "}
     };
+
+    int qtd_jogos = 12;
     
     // Print do login
     printf("Ola, seja bem vindo a loja 'A link to the future' \n");
@@ -104,6 +106,7 @@ int main() {
         printf("-1. Sair do Sistema\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &escolha);
+        while(getchar() != '\n');
 
         //menu listar jogos
 
@@ -112,7 +115,7 @@ int main() {
 
                 printf("\nBiblioteca de jogos para se alugar: \n");
 
-                for(int i = 0; i < 12; i++) {
+                for(int i = 0; i < qtd_jogos; i++) {
                     printf("%d - %s\n", biblioteca[i].id, biblioteca[i].nome);
                 }
                 break;
@@ -127,7 +130,7 @@ int main() {
                 scanf("%d", &escolher_jogo);
                 while(getchar() != '\n');
                 
-                for (int i = 0; i < 12; i++) {
+                for (int i = 0; i < qtd_jogos; i++) {
                     if (biblioteca[i].id == escolher_jogo) {
                         printf("Voce escolheu %s!\n", biblioteca[i].nome);
                         
@@ -189,7 +192,7 @@ int main() {
                     scanf("%d", &id_busca);
                     while(getchar() != '\n'); 
 
-                    for (int i = 0; i < 12; i++) {
+                    for (int i = 0; i < qtd_jogos; i++) {
                         if (biblioteca[i].id == id_busca) {
                             printf("\nJogo Encontrado.\n");
                             printf("ID: %d\n", biblioteca[i].id);
@@ -216,7 +219,7 @@ int main() {
                 
                 printf("\n======== carrinho =============");
 
-                for (int i = 0; i < 12; i++){
+                for (int i = 0; i < qtd_jogos; i++){
                     if(p1.carrinho[i][1] > 0){
                         printf("\n%d - %s: %d", biblioteca[i].id, biblioteca[i].nome, p1.carrinho[i][1]);
                     }
@@ -235,7 +238,7 @@ int main() {
                     scanf("%d", &id_delete);
                     while(getchar() != '\n'); 
 
-                    for (int i = 0; i < 12; i++) {
+                    for (int i = 0; i <qtd_jogos; i++) {
                         if (biblioteca[i].id == id_delete) {
                             printf("ID: %d\n", biblioteca[i].id);
                             printf("Nome: %s\n", biblioteca[i].nome);
@@ -271,6 +274,42 @@ int main() {
                         printf("\nErro: Jogo com o ID %d nao foi encontrado no carrinho. :(\n", id_delete);
                     }
                 } 
+                break;
+
+            case 6: // [ADMIN] Adicionar jogo na biblioteca da loja
+                if (qtd_jogos >= 100) {
+                    printf("\nErro: Limite de armazenamento da loja atingido (Max: 100).\n");
+                    break;
+                }
+
+                int novo_id;
+                int id_duplicado = 0;
+
+                printf("\n--- [ADMIN] Cadastrar Novo Jogo na Loja ---\n");
+                printf("Digite o ID unico do novo jogo:");
+                scanf("%d", &novo_id);
+                while(getchar() != '\n');
+
+                if(novo_id <= 0) {
+                    printf("Erro: O ID deve ser um numero positivo maior que zero.\n");
+                    break;
+                }
+
+                if (id_duplicado) {
+                    printf("Erro: Ja existe um jogo cadastrado com o ID %d.\n", novo_id);
+                } else {
+                    biblioteca[qtd_jogos].id = novo_id;
+
+                    printf("Digite o nome do jogo: ");
+                    scanf("%[^\n]", biblioteca[qtd_jogos].nome);
+                    while(getchar() != '\n');
+
+                    p1.carrinho[qtd_jogos][0] = 0;
+                    p1.carrinho[qtd_jogos][1] = 0;
+
+                    qtd_jogos++;
+                    printf("\nNovo jogo adicionado na loja com sucesso.\n");
+                }
                 break;
 
             case -1: //sair do sistema
