@@ -22,6 +22,12 @@
 int main() {
 
     // Variaveis
+
+    struct Jogo {
+        int id;
+        char nome[100];
+    };
+
     struct Login {
         char nome[100];
         char senha[50];
@@ -35,6 +41,21 @@ int main() {
         p1.carrinho[i][0] = i + 1;
         p1.carrinho[i][1] = 0;
     }
+
+    struct Jogo biblioteca[12] = {
+        {1, "Fallout: New Vegas (XBOX 360)"},
+        {2, "The Legend of Zelda: Tears of The Kingdom (NINTENDO SWITCH 2)"},
+        {3, "Half Life (PC)"},
+        {4, "Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2)"},
+        {5, "Mother 2: Earthbound (SNES)"},
+        {6, "Lego Batman: The legacy of the dark knight"},
+        {7, "Chrono Trigger (SNES)"},
+        {8, "Mario kart World (NINTENDO SWITCH 2)"},
+        {9, "Dark Souls: Remastered (XBOX SERIES S/X)"},
+        {10, "Super Mario Galaxy 1+2 (NINTENDO SWITCH 2)"},
+        {11, "Team Fortress 2 (PC)"},
+        {12, "The Legend of Zelda: Ocarina of Time (NINTENDO SWITCH 2)"}
+    };
     
     // Print do login
     printf("Ola, seja bem vindo a loja 'A link to the future' \n");
@@ -92,21 +113,14 @@ int main() {
 
         switch (escolha) {
             case 1: // Listar jogos
-                printf("Biblioteca de jogos para se alugar: \n");
-                printf("1 - Fallout: New Vegas (XBOX 360) \n" );
-                printf("2 - The Legend of Zelda: Tiers of The Kingdom (NINTENDO SWITCH 2) \n" );
-                printf("3 - Half Life (PC) \n" );
-                printf("4 - Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2) \n" );
-                printf("5 - Mother 2: Earthbound (SNES) \n" );
-                printf("6 - Lego Batman: The legacy of the dark knight \n" );
-                printf("7 - Chrono Trigger (SNES) \n" );
-                printf("8 - Mario kart World (NINTENDO SWITCH 2) \n" );
-                printf("9 - Dark Souls: Remastered (XBOX SERIES S/X)\n" );
-                printf("10 - Super Mario Galaxy 1+2 (NINTENDO SWITCH 2) \n" );
-                printf("11 - Team Fortress 2 (PC) \n" );
-                printf("12 - The Legend of Zelda: Ocarina of Time (NINTENDO SWITCH 2) \n" );
+
+                printf("\nBiblioteca de jogos para se alugar: \n");
+
+                for(int i = 0; i < 12; i++) {
+                    printf("%d - %s\n", biblioteca[i].id, biblioteca[i].nome);
+                }
                 break;
-            
+                
             case 2: //cadastrar jogo
                 
             printf("Escolha um jogo para alugar: \n");
@@ -114,11 +128,11 @@ int main() {
                 int escolher_jogo;
                 scanf("%d", &escolher_jogo);
                     
-                switch escolher_jogo{
+                switch (escolher_jogo) {
                         
                     case 1:
                         printf("Você escolheu: Fallout: New Vegas (XBOX 360)\n");
-                        if(p1.carrinho[0][0] > 0){
+                        if(p1.carrinho[0][1] > 0){
                             int sobrescrever;
                             printf("Você ja tem esse jogo no carrinho, sobrescrever? (0 ou 1): ");
                             scanf("%d", &sobrescrever);
@@ -140,7 +154,7 @@ int main() {
                 }
                 break;
             case 3: //buscar jogo
-                printf("Voce escolheu: Half Life (PC)\n"); 
+
                 break;
             case 4: //atualizar jogo
                 printf("Voce escolheu: Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2)\n"); 
