@@ -77,82 +77,82 @@ int main() {
     
     int escolha = 0;
 
-    printf("Bem vindo ao alugel de jogos \"A link to the future\"\n");
-    printf("1. Listar Jogos\n");
-    printf("2. Cadastrar Jogo\n");
-    printf("3. Buscar Jogo por ID\n");
-    printf("4. Atualizar Jogo\n");
-    printf("5. Remover Jogo\n");
-    printf("6. Sair do Sistema\n");
-    printf("Escolha uma opcao: ");
-    scanf("%d", &escolha);
+    while(escolha != -1){
+        printf("Bem vindo ao alugel de jogos \"A link to the future\"\n");
+        printf("1. Listar Jogos\n");
+        printf("2. Cadastrar Jogo\n");
+        printf("3. Buscar Jogo por ID\n");
+        printf("4. Atualizar Jogo\n");
+        printf("5. Remover Jogo\n");
+        printf("-1. Sair do Sistema\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &escolha);
 
-    //menu listar jogos
+        //menu listar jogos
 
-    switch (escolha) {
-        case 1: 
-            printf("Biblioteca de jogos para se alugar: \n");
-            printf("1 - Fallout: New Vegas (XBOX 360) \n" );
-            printf("2 - The Legend of Zelda: Tiers of The Kingdom (NINTENDO SWITCH 2) \n" );
-            printf("3 - Half Life (PC) \n" );
-            printf("4 - Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2) \n" );
-            printf("5 - Mother 2: Earthbound (SNES) \n" );
-            printf("6 - Lego Batman: The legacy of the dark knight \n" );
-            printf("7 - Chrono Trigger (SNES) \n" );
-            printf("8 - Mario kart World (NINTENDO SWITCH 2) \n" );
-            printf("9 - Dark Souls: Remastered (XBOX SERIES S/X)\n" );
-            printf("10 - Super Mario Galaxy 1+2 (NINTENDO SWITCH 2) \n" );
-            printf("11 - Team Fortress 2 (PC) \n" );
-            printf("12 - The Legend of Zelda: Ocarina of Time (NINTENDO SWITCH 2) \n" );
+        switch (escolha) {
+            case 1: // Listar jogos
+                printf("Biblioteca de jogos para se alugar: \n");
+                printf("1 - Fallout: New Vegas (XBOX 360) \n" );
+                printf("2 - The Legend of Zelda: Tiers of The Kingdom (NINTENDO SWITCH 2) \n" );
+                printf("3 - Half Life (PC) \n" );
+                printf("4 - Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2) \n" );
+                printf("5 - Mother 2: Earthbound (SNES) \n" );
+                printf("6 - Lego Batman: The legacy of the dark knight \n" );
+                printf("7 - Chrono Trigger (SNES) \n" );
+                printf("8 - Mario kart World (NINTENDO SWITCH 2) \n" );
+                printf("9 - Dark Souls: Remastered (XBOX SERIES S/X)\n" );
+                printf("10 - Super Mario Galaxy 1+2 (NINTENDO SWITCH 2) \n" );
+                printf("11 - Team Fortress 2 (PC) \n" );
+                printf("12 - The Legend of Zelda: Ocarina of Time (NINTENDO SWITCH 2) \n" );
+                break;
+            
+            case 2: //cadastrar jogo
+                
             printf("Escolha um jogo para alugar: \n");
-            break;
-        case 2: 
-            printf("Voce escolheu: The Legend of Zelda: Tears of The Kingdom (NINTENDO SWITCH 2)\n"); 
-            break;
-        case 3: 
-            printf("Voce escolheu: Half Life (PC)\n"); 
-            break;
-        case 4: 
-            printf("Voce escolheu: Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2)\n"); 
-            break;
-        case 5: 
-            printf("Voce escolheu: Mother 2: Earthbound (SNES)\n"); 
-            break;
-        case 6: 
-            printf("Voce escolheu: Lego Batman: The legacy of the dark knight\n"); 
-            break;
-        case 7: 
-            printf("Voce escolheu: Chrono Trigger (SNES)\n"); 
-            break;
-        case 8: 
-            printf("Voce escolheu: Mario kart World (NINTENDO SWITCH 2)\n"); 
-            break;
-        case 9: 
-            printf("Voce escolheu: Dark Souls: Remastered (XBOX SERIES S/X)\n"); 
-            break;
-        case 10: 
-            printf("Voce escolheu: Super Mario Galaxy 1+2 (NINTENDO SWITCH 2)\n"); 
-            break;
-        case 11: 
-            printf("Voce escolheu: Team Fortress 2 (PC)\n"); 
-            break;
-        case 12: 
-            printf("Voce escolheu: The Legend of Zelda: Ocarina of Time (NINTENDO SWITCH 2)\n"); 
-            break;
-        default: 
-            printf("Opcao invalida! Por favor, escolha um numero de 1 a 12.\n"); 
-            break;
+               
+                int escolher_jogo;
+                scanf("%d", &escolher_jogo);
+                    
+                switch escolher_jogo{
+                        
+                    case 1:
+                        printf("Você escolheu: Fallout: New Vegas (XBOX 360)\n");
+                        if(p1.carrinho[0][0] > 0){
+                            int sobrescrever;
+                            printf("Você ja tem esse jogo no carrinho, sobrescrever? (0 ou 1): ");
+                            scanf("%d", &sobrescrever);
+                            
+                            if (sobrescrever == 1){
+                                printf("Escolha de sobrescrever!\n");
+                            } else if(sobrescrever == 0){
+                                break;
+                            } else {
+                                printf("Input invalido");
+                                break;
+                            }
+                        }
+                        int unidades;
+                        printf("Quantas unidades você quer: ");
+                        scanf("%d", &unidades);
+                        p1.carrinho[0][1] = unidades;
+
+                }
+                break;
+            case 3: //buscar jogo
+                printf("Voce escolheu: Half Life (PC)\n"); 
+                break;
+            case 4: //atualizar jogo
+                printf("Voce escolheu: Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2)\n"); 
+                break;
+            case 5: //remover jogo
+                printf("Voce escolheu: Mother 2: Earthbound (SNES)\n"); 
+                break;
+            default:
+                printf("Escolha inexistente\n");
+                break;
+        }
     }
-
-    //cadastrar jogo
-
-    //buscar jogo
-
-    //atualizar jogo
-
-    //remover jogo
-
-    // sair do sistema
 
     return 0;
 }
