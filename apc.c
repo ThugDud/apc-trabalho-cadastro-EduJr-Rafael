@@ -24,14 +24,37 @@ int main() {
     // Variaveis
     struct Login {
         char nome[50];
-        char senha;
+        char senha[50];
         int idade;
-    }
+    };
+
+    struct Login p1;
 
     // Print do login
     printf("Ola, seja bem vindo a loja 'A link to the future' \n");
     printf("Entre com o seu login: \n");
+    printf("Nome: ");
 
+    char nome_temp[50] = {};
+
+    scanf("%[^\n]s", nome_temp);
+    while(getchar() != '\n');
+    strcpy(p1.nome, nome_temp);
+
+    printf("Senha: ");
+
+    char senha_temp[50] = {};
+
+    scanf("%[^\n]s", senha_temp);
+    while(getchar() != '\n');
+    strcpy(p1.senha, senha_temp);
+
+    printf("Idade: ");
+    scanf("%d", &p1.idade);
+    while(getchar() != '\n');
+    printf("\nLogin feito com sucesso!\n\n");
+
+    printf("nome = %s\nsenha = %s\n idade = %d", p1.nome, p1.senha, p1.idade);
 
     // Print aluguel
 
