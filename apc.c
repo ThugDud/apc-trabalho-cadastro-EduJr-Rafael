@@ -2,22 +2,6 @@
 #include <string.h>
 #include <math.h>
 
-    // struct Pessoa {
-    //     char nome[50];
-    //     int idade;
-    //     float altura;
-    // };
-
-    // struct Pessoa p1;
-
-    // p1.idade = 12;
-    // p1.altura = 1.70;
-    // strcpy(p1.nome, "Carlos");
-
-    // printf("Nome: %s\n", p1.nome);
-    // printf("idade: %d\n", p1.idade);
-    // printf("altura: %f\n", p1.altura);
-   
 
 int main() {
 
@@ -76,9 +60,19 @@ int main() {
     while(getchar() != '\n');
     strcpy(p1.senha, senha_temp);
 
-    printf("Idade: ");
-    scanf("%d", &p1.idade);
-    while(getchar() != '\n');
+    while(1){
+        printf("Idade: ");
+        scanf("%d", &p1.idade);
+        while(getchar() != '\n');
+        
+        if(p1.idade < 1){
+            printf("\nIdade invalida\n\n");
+        } else {
+            break;
+        }
+
+    }
+ 
     printf("\n\n===============================\n");
     printf("  Login feito com sucesso!\n");
     printf("===============================\n\n");
@@ -99,7 +93,7 @@ int main() {
     int escolha = 0;
 
     while(escolha != -1){
-        printf("Bem vindo ao alugel de jogos \"A link to the future\"\n");
+        printf("\nBem vindo ao alugel de jogos \"A link to the future\"\n");
         printf("1. Listar Jogos\n");
         printf("2. Cadastrar Jogo no carrinho\n");
         printf("3. Buscar Jogo por ID\n");
@@ -217,8 +211,18 @@ int main() {
                 break;
 
             case 4: //Ver carrinho
-                printf("Voce escolheu: Paper Mario The Thousand-Year Door (NINTENDO SWITCH 2)\n"); 
+                
+                printf("\n======== carrinho =============");
+
+                for (int i = 0; i < 12; i++){
+                    if(p1.carrinho[i][1] > 0){
+                        printf("\n%d - %s: %d", biblioteca[i].id, biblioteca[i].nome, p1.carrinho[i][1]);
+                    }
+                }
+
+                printf("\n===============================\n\n");
                 break;
+             
 
              case 5: // remover jogo do carrinho
                 { 
