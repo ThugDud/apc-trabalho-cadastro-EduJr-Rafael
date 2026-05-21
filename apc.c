@@ -23,7 +23,7 @@ int main() {
 
     // Variaveis
     struct Login {
-        char nome[50];
+        char nome[100];
         char senha[50];
         int idade;
     };
