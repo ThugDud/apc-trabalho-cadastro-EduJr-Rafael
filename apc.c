@@ -64,21 +64,20 @@ int main() {
 
     char senha_censurada[50];
 
-    for (int i = 0; i < 50; i++){
-        if(p1.senha[i]){
-            senha_censurada[i] = '*';
-        }
+    for (int i = 0; p1.senha[i] != '\0'; i++){
+        senha_censurada[i] = '*';
+        senha_censurada[i+1] = '\0';
     }
 
     printf("Nome cadastrado: %s\n", p1.nome);
     printf("Senha cadastrada: %s\n", senha_censurada);
     printf("Idade cadastrada: %d anos\n\n", p1.idade);
 
-    // Print aluguel
+    // menu principal
     
     int escolha = 0;
 
-    printf("Bem vindo ao alugél de jogos \"A link to the future\"\n");
+    printf("Bem vindo ao alugel de jogos \"A link to the future\"\n");
     printf("1. Listar Jogos\n");
     printf("2. Cadastrar Jogo\n");
     printf("3. Buscar Jogo por ID\n");
@@ -87,6 +86,8 @@ int main() {
     printf("6. Sair do Sistema\n");
     printf("Escolha uma opcao: ");
     scanf("%d", &escolha);
+
+    //menu listar jogos
 
     switch (escolha) {
         case 1: 
@@ -143,7 +144,15 @@ int main() {
             break;
     }
 
-    // Opção
+    //cadastrar jogo
+
+    //buscar jogo
+
+    //atualizar jogo
+
+    //remover jogo
+
+    // sair do sistema
 
     return 0;
 }
