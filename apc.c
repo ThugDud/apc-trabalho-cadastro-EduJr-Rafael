@@ -168,6 +168,7 @@ int main() {
                             printf("\nJogo Encontrado.\n");
                             printf("ID: %d\n", biblioteca[i].id);
                             printf("Nome: %s\n", biblioteca[i].nome);
+                            printf("Carrinho: %d\n", p1.carrinho[i][1]);
                             encontrado = 1; 
                             break; 
                         }
