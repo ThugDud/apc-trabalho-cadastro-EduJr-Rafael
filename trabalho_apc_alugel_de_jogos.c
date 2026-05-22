@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <strings.h>
 
 
 int main() {
@@ -26,18 +27,18 @@ int main() {
     }
 
     struct Jogo biblioteca[100] = {
-        {1, "Fallout: New Vegas "},
-        {2, "The Legend of Zelda: Tears of The Kingdom "},
-        {3, "Half Life "},
-        {4, "Paper Mario The Thousand-Year Door "},
-        {5, "Mother 2: Earthbound "},
+        {1, "Fallout: New Vegas"},
+        {2, "The Legend of Zelda: Tears of The Kingdom"},
+        {3, "Half Life"},
+        {4, "Paper Mario The Thousand-Year Door"},
+        {5, "Mother 2: Earthbound"},
         {6, "Lego Batman: The legacy of the dark knight"},
-        {7, "Chrono Trigger "},
-        {8, "Mario kart World "},
-        {9, "Dark Souls: Remastered "},
-        {10, "Super Mario Galaxy 1+2 "},
-        {11, "Team Fortress 2 "},
-        {12, "The Legend of Zelda: Ocarina of Time "}
+        {7, "Chrono Trigger"},
+        {8, "Mario kart World"},
+        {9, "Dark Souls: Remastered"},
+        {10, "Super Mario Galaxy 1+2"},
+        {11, "Team Fortress 2"},
+        {12, "The Legend of Zelda: Ocarina of Time"}
     };
 
     int qtd_jogos = 12;
@@ -291,7 +292,7 @@ int main() {
                 while(getchar() != '\n');
 
                 for (int i = 0; i < qtd_jogos; i++) {
-                    if (strcmp(biblioteca[i].nome, novo_nome) == 1) {
+                    if (strcasecmp(biblioteca[i].nome, novo_nome) == 0) {
                         nome_duplicado = 1;
                         break;
                     }
@@ -355,7 +356,20 @@ int main() {
                     printf("Erro: Jogo com o ID %d nao foi encontrado na loja.\n", id_remover_loja);
                 }
                 break;
+            
+            case 8:
+                
+                int escolha;
+                printf("\nEscreva o ID do jogo que quer atualizar: ");
+                scanf("%d", &escolha);
+                while(getchar() != '\n');
 
+                for (int i = 0; i < qtd_jogos; i++) {
+                    if (biblioteca[i].id == id_busca) {
+
+                    }
+                }
+                break;
             case -1: //sair do sistema
                 printf("\nVoce esta saindo do sistema, muito obrigado por usar 'A link to the future'!\n");
                 break;
