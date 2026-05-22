@@ -379,7 +379,7 @@ int main() {
                 for (int i = 0; i < qtd_jogos; i++) {
                     if (biblioteca[i].id == escolha) {
                         atualizado = 1;
-                        printf("\nVocê escolheu: %s\n",biblioteca[i].nome);
+                        printf("\nVoce escolheu: %s\n",biblioteca[i].nome);
 
                         printf("\nDigite o novo nome para esse jogo: ");
                         
