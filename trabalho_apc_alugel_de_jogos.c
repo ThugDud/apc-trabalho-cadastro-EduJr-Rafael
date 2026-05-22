@@ -291,6 +291,11 @@ int main() {
                 scanf("%[^\n]", novo_nome);
                 while(getchar() != '\n');
 
+               if(strcasecmp(novo_nome, "\0") == 0){
+                    printf("\nNome invalido\n\n");
+                    break;
+                }
+
                 for (int i = 0; i < qtd_jogos; i++) {
                     if (strcasecmp(biblioteca[i].nome, novo_nome) == 0) {
                         nome_duplicado = 1;
@@ -358,17 +363,46 @@ int main() {
                 break;
             
             case 8:
+
+                if (qtd_jogos == 0) {
+                    printf("\nErro: Nao ha jogos cadastrados para atualizar.\n");
+                    break;
+                }
                 
                 int escolha;
+                int atualizado = 0;
+                
                 printf("\nEscreva o ID do jogo que quer atualizar: ");
                 scanf("%d", &escolha);
                 while(getchar() != '\n');
 
                 for (int i = 0; i < qtd_jogos; i++) {
-                    if (biblioteca[i].id == id_busca) {
+                    if (biblioteca[i].id == escolha) {
+                        atualizado = 1;
+                        printf("\nVocê escolheu: %s\n",biblioteca[i].nome);
 
+                        printf("\nDigite o novo nome para esse jogo: ");
+                        
+                        char holder_nome[100];
+                        scanf("%[^\n]", &holder_nome);
+                        
+                        if(strcasecmp(holder_nome, "\0") == 0){
+                            printf("\nNome invalido\n\n");
+                            break;
+                        }
+
+                        strcpy(biblioteca[i].nome, holder_nome);
+                        printf("\nJogo atualizado com sucesso para: %s!\n\n", biblioteca[i].nome);
                     }
                 }
+
+                if (atualizado == 1) {
+                    printf("\nBusca finalizada com sucesso.\n");
+                }
+                else {
+                    printf("\nErro: Jogo com o ID %d nao foi encontrado. :(\n", atualizado);
+                }
+
                 break;
             case -1: //sair do sistema
                 printf("\nVoce esta saindo do sistema, muito obrigado por usar 'A link to the future'!\n");
