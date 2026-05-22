@@ -25,7 +25,7 @@ int main() {
         p1.carrinho[i][1] = 0;
     }
 
-    struct Jogo biblioteca[50] = {
+    struct Jogo biblioteca[100] = {
         {1, "Fallout: New Vegas "},
         {2, "The Legend of Zelda: Tears of The Kingdom "},
         {3, "Half Life "},
@@ -282,33 +282,77 @@ int main() {
                     break;
                 }
 
-                int novo_id;
-                int id_duplicado = 0;
+                char novo_nome[100];
+                int nome_duplicado = 0;
 
                 printf("\n--- [ADMIN] Cadastrar Novo Jogo na Loja ---\n");
-                printf("Digite o ID unico do novo jogo:");
-                scanf("%d", &novo_id);
+                printf("Digite o nome do jogo: ");
+                scanf("%[^\n]", novo_nome);
                 while(getchar() != '\n');
 
-                if(novo_id <= 0) {
-                    printf("Erro: O ID deve ser um numero positivo maior que zero.\n");
-                    break;
+                for (int i = 0; i < qtd_jogos; i++) {
+                    if (strcasecmp(biblioteca[i].nome, novo_nome) == 0) {
+                        nome_duplicado = 1;
+                        break;
+                    }
                 }
 
-                if (id_duplicado) {
-                    printf("Erro: Ja existe um jogo cadastrado com o ID %d.\n", novo_id);
+                if (nome_duplicado) {
+                    printf("Erro: Ja existe um jogo cadastrado com o nome '%s'.\n", novo_nome);
                 } else {
+                    int novo_id = qtd_jogos + 1;
+                    
                     biblioteca[qtd_jogos].id = novo_id;
+                    strcpy(biblioteca[qtd_jogos].nome, novo_nome);
 
-                    printf("Digite o nome do jogo: ");
-                    scanf("%[^\n]", biblioteca[qtd_jogos].nome);
-                    while(getchar() != '\n');
-
-                    p1.carrinho[qtd_jogos][0] = 0;
+                    p1.carrinho[qtd_jogos][0] = novo_id;
                     p1.carrinho[qtd_jogos][1] = 0;
 
                     qtd_jogos++;
                     printf("\nNovo jogo adicionado na loja com sucesso.\n");
+                }
+                break;
+
+ case 7: // [ADMIN] Remover jogo na biblioteca da loja 
+                if (qtd_jogos == 0) {
+                    printf("\nErro: Nao ha jogos cadastrados para remover.\n");
+                    break;
+                }
+
+                int id_remover_loja;
+                int remover_da_loja = 0;
+                printf("\n--- [ADMIN] Remover Jogo da Loja ---\n");
+                printf("Digite o ID do jogo que dejesa remover do sistema: ");
+                scanf("%d", &id_remover_loja);
+                while(getchar() != '\n');
+
+                for (int i = 0; i < qtd_jogos; i++) {
+                    if (biblioteca[i].id == id_remover_loja) {
+                        remover_da_loja = 1;
+                        printf("Removendo o jogo: %s\n", biblioteca[i].nome);
+
+                        for (int j = i; j < qtd_jogos - 1; j++) {
+                            biblioteca[j] = biblioteca[j + 1];
+                            p1.carrinho[j][0] = p1.carrinho[j + 1][0];
+                            p1.carrinho[j][1] = p1.carrinho[j + 1][1];
+                        }    
+
+                        qtd_jogos--; 
+
+                        for (int k = 0; k < qtd_jogos; k++) {
+                            biblioteca[k].id = k + 1;
+                            p1.carrinho[k][0] = k + 1;
+                        }
+                        
+                        p1.carrinho[qtd_jogos][1] = 0;
+                        
+                        printf("Jogo deletado do sistema com sucesso!\n");
+                        break;
+                    }
+                }
+
+                if(!remover_da_loja) {
+                    printf("Erro: Jogo com o ID %d nao foi encontrado na loja.\n", id_remover_loja);
                 }
                 break;
 
