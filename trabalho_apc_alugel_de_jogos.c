@@ -384,7 +384,7 @@ int main() {
                         printf("\nDigite o novo nome para esse jogo: ");
                         
                         char holder_nome[100];
-                        scanf("%[^\n]", &holder_nome);
+                        scanf("%[^\n]", holder_nome);
                         
                         if(strcasecmp(holder_nome, "\0") == 0){
                             printf("\nNome invalido\n\n");
