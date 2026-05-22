@@ -291,7 +291,7 @@ int main() {
                 while(getchar() != '\n');
 
                 for (int i = 0; i < qtd_jogos; i++) {
-                    if (strcasecmp(biblioteca[i].nome, novo_nome) == 0) {
+                    if (strcmp(biblioteca[i].nome, novo_nome) == 1) {
                         nome_duplicado = 1;
                         break;
                     }
@@ -313,7 +313,7 @@ int main() {
                 }
                 break;
 
- case 7: // [ADMIN] Remover jogo na biblioteca da loja 
+            case 7: // [ADMIN] Remover jogo na biblioteca da loja 
                 if (qtd_jogos == 0) {
                     printf("\nErro: Nao ha jogos cadastrados para remover.\n");
                     break;
